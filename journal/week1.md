@@ -40,7 +40,7 @@ We can use the `-var` flag to set an input variable or override a variable in th
 
 ### terraform.tvfars
 
-This is the default file to load in terraform variables in blunk
+This is the default file to load in terraform variables in bulk
 
 ### auto.tfvars
 
