@@ -4,12 +4,12 @@ package main
 
 // fmt is short format, it contains functions for formatted I/O.
 import (
-	"log"
-	"fmt"
 	"bytes"
 	"context"
 	"encoding/json"
-	"net/http"	
+	"net/http"
+	"log"
+	"fmt"
 	"github.com/google/uuid"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -65,8 +65,6 @@ func Provider() *schema.Provider {
 	p.ConfigureContextFunc = providerConfigure(p)
 	return p
 }
-
-
 
 func resourceHouseCreate(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics {
 	log.Print("resourceHouseCreate:start")
