@@ -36,3 +36,16 @@ provider "terratowns" {
 #  content_version     = var.content_version
 #  assets_path         = var.assets_path
 #}
+
+resource "terratowns_home" "home" {
+  name        = "How to play Bejeweled in 2023!"
+  description = <<DESCRIPTION
+Bejeweled is a match-3 jewel game series created by PopCap. The objective of the game is to swap two 
+adjacent gems of seven colors to create a line or row of three or more gems. The gems disappear once lined up.
+DESCRIPTION
+  #domain_name = module.terrahouse_aws.cloudfront_url
+  #mock it
+  domain_name     = "3fdq3gz.cloudfront.net"
+  town            = "gamers-grotto"
+  content_version = 1
+}
