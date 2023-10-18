@@ -42,7 +42,7 @@ DESCRIPTION
   #domain_name = module.terrahouse_aws.cloudfront_url
   #mock it
   domain_name     = module.home_butterfinger_hosting.domain_name
-  town            = "missingo"
+  town            = "cooker-cove"
   content_version = var.butterfinger.content_version
 }
 
@@ -61,6 +61,6 @@ nougat, caramel and milk chocolate, SNICKERS Candy handles your hunger so you ca
 hunger at all.
 DESCRIPTION
   domain_name     = module.home_snickers_hosting.domain_name
-  town            = "missingo"
+  town            = "cooker-cove"
   content_version = var.snickers.content_version
 }
