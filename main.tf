@@ -13,13 +13,12 @@ terraform {
   #    name = "terra-house-1"
   #  }
   #}
-  #cloud {
-  #  organization = "ExamPro"
-  #  workspaces {
-  #    name = "terra-house-1"
-  #  }
-  #}
-
+  cloud {
+    organization = "ChipBeatty"
+    workspaces {
+      name = "terra-house-1"
+    }
+  }
 }
 
 provider "terratowns" {
@@ -27,26 +26,41 @@ provider "terratowns" {
   user_uuid = var.teacherseat_user_uuid
   token     = var.terratowns_access_token
 }
-module "terrahouse_aws" {
-  source              = "./modules/terrahouse_aws"
-  user_uuid           = var.teacherseat_user_uuid
-  index_html_filepath = var.index_html_filepath
-  error_html_filepath = var.error_html_filepath
-  content_version     = var.content_version
-  assets_path         = var.assets_path
+module "home_butterfinger_hosting" {
+  source          = "./modules/terrahome_aws"
+  user_uuid       = var.teacherseat_user_uuid
+  public_path     = var.butterfinger.public_path
+  content_version = var.butterfinger.content_version
 }
 
 resource "terratowns_home" "home" {
-  name        = "How to play Bejeweled in 2023!"
+  name        = "Butterfinger"
   description = <<DESCRIPTION
-Bejeweled is a match-3 jewel game series created by PopCap. The objective of the game is to swap two 
-adjacent gems of seven colors to create a line or row of three or more gems. The gems disappear once lined up.
+Butterfinger is a candy bar manufactured by the Ferrara Candy Company, a subsidiary of Ferrero.
+It consists of a layered crisp peanut butter core covered in a chocolatey coating.
 DESCRIPTION
   #domain_name = module.terrahouse_aws.cloudfront_url
   #mock it
-  domain_name     = module.terrahouse_aws.cloudfront_url
+  domain_name     = module.home_butterfinger_hosting.domain_name
   town            = "missingo"
-  content_version = 1
+  content_version = var.butterfinger.content_version
 }
 
-# test
+module "home_snickers_hosting" {
+  source          = "./modules/terrahome_aws"
+  user_uuid       = var.teacherseat_user_uuid
+  public_path     = var.snickers.public_path
+  content_version = var.snickers.content_version
+}
+
+resource "terratowns_home" "home_snickers" {
+  name            = "Snickers"
+  description     = <<DESCRIPTION
+You aren't you when you're hungry. That's why there's SNICKERS Full Size Chocolate Bars. Packed with roasted peanuts, 
+nougat, caramel and milk chocolate, SNICKERS Candy handles your hunger so you can handle things that don't relate to 
+hunger at all.
+DESCRIPTION
+  domain_name     = module.home_snickers_hosting.domain_name
+  town            = "missingo"
+  content_version = var.snickers.content_version
+}
